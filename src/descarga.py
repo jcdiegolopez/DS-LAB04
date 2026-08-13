@@ -16,6 +16,7 @@ from configuracion import (
     LAKES,
     OFFICIAL_SCENES,
     REQUIRED_BANDS,
+    PROJECT_ROOT,
     TABLES_DIR,
     next_day,
     scene_output_path,
@@ -43,7 +44,9 @@ def build_inventory() -> pd.DataFrame:
                     "satelite": satellite,
                     "nubosidad_oficial_pct": cloudiness,
                     "bandas_solicitadas": ",".join(REQUIRED_BANDS),
-                    "ruta_salida": str(output),
+                    # Ruta relativa para que el inventario funcione en cualquier computadora
+                    # que conserve la estructura del proyecto.
+                    "ruta_salida": output.relative_to(PROJECT_ROOT).as_posix(),
                     "estado_descarga": "pendiente",
                     "observaciones": note,
                 }
@@ -114,6 +117,8 @@ def validate_geotiff(path: str | Path) -> dict[str, Any]:
     import rasterio
 
     path = Path(path)
+    if not path.is_absolute():
+        path = PROJECT_ROOT / path
     with rasterio.open(path) as source:
         if source.count != len(REQUIRED_BANDS):
             raise ValueError(
@@ -146,4 +151,3 @@ def update_download_status(inventory: pd.DataFrame) -> pd.DataFrame:
             statuses.append(f"requiere_revision: {error}")
     result["estado_descarga"] = statuses
     return result
-
