@@ -1,0 +1,6 @@
+openeo
+rasterio
+numpy
+pandas
+matplotlib
+jupyter
