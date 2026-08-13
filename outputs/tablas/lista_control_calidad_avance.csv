@@ -1,0 +1,5 @@
+﻿criterio,estado,evidencia,accion_requerida
+Se usan exactamente las 22 fechas oficiales,cumple,"Inventario: 22 filas; distribución por lago: {'amatitlan': 11, 'atitlan': 11}.",
+"Rasteres B03, B04 y B08 disponibles",pendiente,Rasteres encontrados: 0 de 22.,Regenerar las descargas con openEO o compartir data/raw fuera de Git.
+Producto numérico de cianobacteria disponible,pendiente,"Rasteres numéricos encontrados: 0 de 22. Producto esperado: CyanoLakes Chlorophyll-a NDCI L1C (Kravitz & Matthews, 2020).",Exportar un raster numérico alineado por fecha desde la evaluación documentada del script; una imagen RGB no es suficiente para las métricas.
+Tabla de métricas por lago y fecha,pendiente,Ruta esperada: outputs\tablas\metricas_por_fecha.csv.,Ejecutar la sección 3 cuando estén disponibles los rasteres mínimos y de cianobacteria.

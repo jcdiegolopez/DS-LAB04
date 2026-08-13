@@ -15,6 +15,7 @@ from configuracion import (
     COLLECTION_ID,
     LAKES,
     OFFICIAL_SCENES,
+    PROJECT_ROOT,
     REQUIRED_BANDS,
     TABLES_DIR,
     next_day,
@@ -43,7 +44,7 @@ def build_inventory() -> pd.DataFrame:
                     "satelite": satellite,
                     "nubosidad_oficial_pct": cloudiness,
                     "bandas_solicitadas": ",".join(REQUIRED_BANDS),
-                    "ruta_salida": str(output),
+                    "ruta_salida": str(output.relative_to(PROJECT_ROOT)),
                     "estado_descarga": "pendiente",
                     "observaciones": note,
                 }
@@ -114,6 +115,8 @@ def validate_geotiff(path: str | Path) -> dict[str, Any]:
     import rasterio
 
     path = Path(path)
+    if not path.is_absolute():
+        path = PROJECT_ROOT / path
     with rasterio.open(path) as source:
         if source.count != len(REQUIRED_BANDS):
             raise ValueError(
@@ -137,11 +140,15 @@ def update_download_status(inventory: pd.DataFrame) -> pd.DataFrame:
     result = inventory.copy()
     statuses = []
     for path in result["ruta_salida"]:
-        try:
-            validate_geotiff(path)
-            statuses.append("descargado_validado")
-        except FileNotFoundError:
+        candidate = Path(path)
+        if not candidate.is_absolute():
+            candidate = PROJECT_ROOT / candidate
+        if not candidate.exists():
             statuses.append("pendiente")
+            continue
+        try:
+            validate_geotiff(candidate)
+            statuses.append("descargado_validado")
         except Exception as error:  # Se conserva el detalle para revisar la escena.
             statuses.append(f"requiere_revision: {error}")
     result["estado_descarga"] = statuses
