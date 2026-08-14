@@ -1,6 +1,7 @@
 # Datos raster descargados desde Copernicus: regenerables y potencialmente pesados.
 data/raw/
 data/cyano/
+data/cyano_inputs/
 
 # Archivos temporales locales de Python y Jupyter.
 __pycache__/

@@ -49,7 +49,11 @@ def read_minimal_bands(path: str | Path) -> tuple[np.ndarray, np.ndarray, np.nda
         bands = source.read(masked=True).astype("float32")
         b03, b04, b08 = (band.filled(np.nan) for band in bands)
         valid = ~np.ma.getmaskarray(bands).any(axis=0)
+        # Los valores negativos son artefactos/nodata de procesamiento y no
+        # representan reflectancia física; sin esta exclusión NDVI/NDWI puede
+        # quedar fuera de su rango teórico [-1, 1].
         valid &= np.isfinite(b03) & np.isfinite(b04) & np.isfinite(b08)
+        valid &= (b03 >= 0) & (b04 >= 0) & (b08 >= 0)
         metadata = {"transform": source.transform, "crs": source.crs, "shape": (source.height, source.width)}
     return b03, b04, b08, valid, metadata
 
