@@ -1,10 +1,13 @@
 # Datos raster descargados desde Copernicus: regenerables y potencialmente pesados.
 data/raw/
+data/cyano/
 
 # Archivos temporales locales de Python y Jupyter.
 __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
+.venv/
+tmp/
 
 # Credenciales o variables locales: nunca deben llegar al repositorio.
 .env

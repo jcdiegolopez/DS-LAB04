@@ -15,6 +15,7 @@ from configuracion import (
     COLLECTION_ID,
     LAKES,
     OFFICIAL_SCENES,
+    PROJECT_ROOT,
     REQUIRED_BANDS,
     PROJECT_ROOT,
     TABLES_DIR,
@@ -44,9 +45,7 @@ def build_inventory() -> pd.DataFrame:
                     "satelite": satellite,
                     "nubosidad_oficial_pct": cloudiness,
                     "bandas_solicitadas": ",".join(REQUIRED_BANDS),
-                    # Ruta relativa para que el inventario funcione en cualquier computadora
-                    # que conserve la estructura del proyecto.
-                    "ruta_salida": output.relative_to(PROJECT_ROOT).as_posix(),
+                    "ruta_salida": str(output.relative_to(PROJECT_ROOT)),
                     "estado_descarga": "pendiente",
                     "observaciones": note,
                 }
@@ -142,11 +141,15 @@ def update_download_status(inventory: pd.DataFrame) -> pd.DataFrame:
     result = inventory.copy()
     statuses = []
     for path in result["ruta_salida"]:
-        try:
-            validate_geotiff(path)
-            statuses.append("descargado_validado")
-        except FileNotFoundError:
+        candidate = Path(path)
+        if not candidate.is_absolute():
+            candidate = PROJECT_ROOT / candidate
+        if not candidate.exists():
             statuses.append("pendiente")
+            continue
+        try:
+            validate_geotiff(candidate)
+            statuses.append("descargado_validado")
         except Exception as error:  # Se conserva el detalle para revisar la escena.
             statuses.append(f"requiere_revision: {error}")
     result["estado_descarga"] = statuses
