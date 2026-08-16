@@ -1,0 +1,5 @@
+﻿lago,relacion,predictor,n_fechas,pearson_r,pearson_p,spearman_rho,spearman_p,interpretacion
+amatitlan,cianobacteria_vs_ndvi,ndvi_promedio,11,0.2627324371577544,0.43507772211037915,0.5272727272727273,0.09556521835315425,Relación positiva débil; no implica causalidad.
+amatitlan,cianobacteria_vs_ndwi,ndwi_promedio,11,0.25295616002516086,0.45296786873491407,-0.18181818181818182,0.5926152128455,Relación positiva débil; no implica causalidad.
+atitlan,cianobacteria_vs_ndvi,ndvi_promedio,11,0.9521259309574175,6.2780834605067635e-06,0.7727272727272727,0.005299487178643862,Relación positiva fuerte; no implica causalidad.
+atitlan,cianobacteria_vs_ndwi,ndwi_promedio,11,0.7234989878408079,0.011848311256548052,0.9363636363636365,2.2082076449177507e-05,Relación positiva fuerte; no implica causalidad.

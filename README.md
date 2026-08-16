@@ -33,6 +33,16 @@ pendientes en el notebook. La lista de control generada en
 `outputs/tablas/lista_control_calidad_avance.csv` identifica cualquier insumo
 faltante antes de preparar la entrega.
 
+## Entrega de Persona 1
+
+La parte de datos y reproducibilidad queda respaldada por `inventario_datos.csv`,
+`lista_control_calidad_avance.csv`, los módulos de `src/` y la sección de
+correlaciones del ejercicio 6. La tabla `outputs/tablas/correlaciones_por_lago.csv`
+y la figura `outputs/figuras/correlaciones_por_lago.png` se generan al ejecutar el
+notebook con los raster compartidos localmente. Las carpetas `data/raw/`,
+`data/cyano/` y `data/cyano_inputs/` no se suben a Git por su tamaño; deben
+compartirse por Drive/OneDrive conservando sus rutas relativas.
+
 ## Fuentes y limitaciones
 
 La estimación de cianobacteria debe documentar el script CyanoLakes

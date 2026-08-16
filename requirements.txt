@@ -3,6 +3,7 @@ rasterio
 numpy
 pandas
 matplotlib
+scipy
 jupyter
 reportlab
 pypdf
