@@ -1,6 +1,6 @@
 # Laboratorio 4 - Análisis geoespacial de cianobacterias
 
-Este repositorio contiene el avance de los ejercicios 1 a 4 para los lagos de
+Este repositorio contiene el análisis integrado de los ejercicios 1 a 8 para los lagos de
 Amatitlán y Atitlán. El notebook principal es
 `Lab4_Analisis_Cianobacterias.ipynb`.
 
@@ -21,7 +21,7 @@ calcular promedios o picos.
 
 ## Alcance implementado
 
-El avance cubre:
+El análisis cubre:
 
 - conexión y trazabilidad de las 22 fechas oficiales;
 - obtención mínima de bandas Sentinel-2;
@@ -29,7 +29,11 @@ El avance cubre:
 - métricas por fecha, serie temporal y detección reproducible de picos.
 - análisis espacial: mapas comparativos de fecha baja/intermedia/pico,
   extensión de valores altos, persistencia por píxel y distribuciones;
-- resumen mensual descriptivo, sin inferir causalidad climática.
+- resumen mensual descriptivo, sin inferir causalidad climática;
+- correlaciones exploratorias por lago entre la señal de cianobacteria, NDVI y
+  NDWI;
+- comparación final de intensidad, frecuencia, extensión y persistencia entre
+  lagos, junto con un informe PDF dirigido a una audiencia ambientalista.
 
 Para los ejercicios 5 y 8, el notebook requiere los 22 rasteres de
 `data/cyano/` además de las bandas en `data/raw/`. Con ellos calcula un umbral
@@ -47,6 +51,20 @@ y la figura `outputs/figuras/correlaciones_por_lago.png` se generan al ejecutar 
 notebook con los raster compartidos localmente. Las carpetas `data/raw/`,
 `data/cyano/` y `data/cyano_inputs/` no se suben a Git por su tamaño; deben
 compartirse por Drive/OneDrive conservando sus rutas relativas.
+
+## Informe final
+
+Después de ejecutar el notebook con los rásteres locales, se generan
+`outputs/tablas/comparacion_lagos.csv` y
+`outputs/figuras/comparacion_lagos.png`. Para construir el informe final use:
+
+```powershell
+python scripts/generar_informe_final.py
+```
+
+El resultado se guarda en `outputs/pdf/Informe_final_analisis_cianobacterias.pdf`.
+El PDF integra las tablas y figuras generadas por el notebook; no incorpora los
+rásteres al repositorio.
 
 ## Fuentes y limitaciones
 

@@ -1,7 +1,10 @@
 # Datos raster descargados desde Copernicus: regenerables y potencialmente pesados.
-data/raw/
-data/cyano/
-data/cyano_inputs/
+# Tambien se excluyen los paquetes locales que se usan para compartirlos fuera de Git.
+/data/
+/cyano/
+/cyano_inputs/
+/data.zip
+/cyano.zip
 
 # Archivos temporales locales de Python y Jupyter.
 __pycache__/
