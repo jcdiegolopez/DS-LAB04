@@ -1,4 +1,4 @@
-"""Funciones de descarga y control de calidad para la Persona 1.
+"""Funciones de descarga y control de calidad de datos.
 
 Estas funciones no contienen credenciales. La autenticación debe abrirse de
 forma interactiva desde el notebook antes de iniciar una descarga.
@@ -126,7 +126,7 @@ def validate_geotiff(path: str | Path) -> dict[str, Any]:
         if source.crs is None:
             raise ValueError(f"{path.name} no tiene sistema de referencia espacial.")
         return {
-            "ruta": str(path),
+            "ruta": str(path.relative_to(PROJECT_ROOT)),
             "bandas": source.count,
             "crs": str(source.crs),
             "ancho": source.width,

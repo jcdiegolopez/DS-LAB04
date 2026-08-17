@@ -2,4 +2,4 @@
 Se usan exactamente las 22 fechas oficiales,cumple,"Inventario: 22 filas; distribución por lago: {'amatitlan': 11, 'atitlan': 11}.",
 "Rasteres B03, B04 y B08 disponibles",cumple,Rasteres encontrados: 22 de 22.,
 Producto numérico de cianobacteria disponible,cumple,"Rasteres numéricos encontrados: 22 de 22. Producto esperado: CyanoLakes Chlorophyll-a NDCI L1C (Kravitz & Matthews, 2020).",
-Tabla de métricas por lago y fecha,cumple,Ruta esperada: outputs\tablas\metricas_por_fecha.csv.,
+Tabla de métricas por lago y fecha,cumple,Ruta esperada: outputs/tablas/metricas_por_fecha.csv.,

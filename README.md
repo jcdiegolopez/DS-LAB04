@@ -19,7 +19,7 @@ secciones 3 y 4, debe existir un GeoTIFF de una banda por lago y fecha, con la
 misma grilla del raster mínimo. No se debe usar una captura RGB del script para
 calcular promedios o picos.
 
-## Alcance del avance
+## Alcance implementado
 
 El avance cubre:
 
@@ -27,13 +27,18 @@ El avance cubre:
 - obtención mínima de bandas Sentinel-2;
 - cálculo de NDVI, NDWI y un producto numérico de cianobacteria documentado;
 - métricas por fecha, serie temporal y detección reproducible de picos.
+- análisis espacial: mapas comparativos de fecha baja/intermedia/pico,
+  extensión de valores altos, persistencia por píxel y distribuciones;
+- resumen mensual descriptivo, sin inferir causalidad climática.
 
-Los ejercicios 5 a 8 pertenecen a la fase 2 y aparecen solo como secciones
-pendientes en el notebook. La lista de control generada en
-`outputs/tablas/lista_control_calidad_avance.csv` identifica cualquier insumo
-faltante antes de preparar la entrega.
+Para los ejercicios 5 y 8, el notebook requiere los 22 rasteres de
+`data/cyano/` además de las bandas en `data/raw/`. Con ellos calcula un umbral
+único como percentil 90 de todos los píxeles válidos de ambos lagos y guarda
+`extension_area_alta_por_fecha.csv`, `resumen_mensual_cianobacteria.csv` y las
+figuras en `outputs/figuras/`. Si algún raster falta, informa la incidencia y
+no genera mapas espaciales incompletos.
 
-## Entrega de Persona 1
+## Datos y reproducibilidad
 
 La parte de datos y reproducibilidad queda respaldada por `inventario_datos.csv`,
 `lista_control_calidad_avance.csv`, los módulos de `src/` y la sección de
